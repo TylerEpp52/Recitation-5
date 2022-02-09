@@ -78,12 +78,37 @@ bool LinkedList::deleteAtIndex(int n)
      // Special case to delete the head
     if (n == 0) {
        //todo
+      Node *temp = head;
+      head = head->next;
+      delete temp;
+      isDeleted = true;
+      return isDeleted;
     }
 
-    Node *pres = head;
-	Node *prev = NULL;
+    //Node *pres = head;
+	//Node *prev = NULL;
+
+  Node *pres = head->next;
+  Node *prev = head;
 
     //TODO
+    int count = 0;
+    while(pres != NULL)
+    {
+      count++;
+      if(count == n)
+      {
+        prev->next = pres->next;
+        delete pres;
+        isDeleted = true;
+        return isDeleted;
+
+        
+      }
+      
+      pres = pres->next;
+      prev = prev->next;
+    }
 
 	return isDeleted;
 }
